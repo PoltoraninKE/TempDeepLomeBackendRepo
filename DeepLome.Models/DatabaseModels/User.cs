@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DeepLome.Models.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace DeepLome.Models
+namespace DeepLome.Models.DatabaseModels
 {
-    public partial class User
+    public partial class User : IEntity
     {
         public User()
         {

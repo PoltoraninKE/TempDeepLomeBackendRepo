@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DeepLome.Models.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace DeepLome.Models
+namespace DeepLome.Models.DatabaseModels
 {
-    public partial class Event
+    public partial class Event : IEntity
     {
         public long Id { get; set; }
         public long? CreatorId { get; set; }

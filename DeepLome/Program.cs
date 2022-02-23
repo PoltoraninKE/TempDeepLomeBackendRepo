@@ -1,4 +1,5 @@
-using DeepLome.Models;
+using DeepLome.Models.DatabaseModels;
+using DeepLome.Models.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,32 +11,33 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+var context = new TrashFindersDBContext();
+var userRepo = new UsersRepository(context);
+
 // Выключено для работы с Ngrok
 //app.UseHttpsRedirection();
 
-var dbContext = new TrashFindersDBContext();
-
 app.MapGet("/size_of_trash", () =>
 {
-    return dbContext.Sizes;
+    return Math.PI;
 })
 .WithName("SizeOfTrash");
 
 app.MapGet("/users", () =>
 {
-    return dbContext.Users;
+    return userRepo.GetAll();
 })
 .WithName("Users");
 
 app.MapGet("/trash", () =>
 {
-    return dbContext.Trashes;
+    return Math.PI;
 })
 .WithName("Trash");
 
 app.MapGet("/events", () =>
 {
-    return dbContext.Events;
+    return Math.PI;
 })
 .WithName("Events");
 

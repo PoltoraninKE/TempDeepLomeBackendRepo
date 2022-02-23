@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DeepLome.Models
+namespace DeepLome.Models.DatabaseModels
 {
     public partial class Size
     {
