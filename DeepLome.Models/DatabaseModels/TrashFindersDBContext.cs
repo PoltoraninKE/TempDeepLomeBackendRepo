@@ -35,7 +35,7 @@ namespace DeepLome.Models.DatabaseModels
         {
             modelBuilder.Entity<Event>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.EndDateTime).HasColumnType("DATETIME");
 
@@ -54,14 +54,14 @@ namespace DeepLome.Models.DatabaseModels
             {
                 entity.ToTable("Size");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.SizeName).HasColumnType("NVARCHAR(255)");
             });
 
             modelBuilder.Entity<Trash>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.UserId).HasColumnType("INT");
 
@@ -76,7 +76,7 @@ namespace DeepLome.Models.DatabaseModels
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.FirstName).HasColumnType("NVARCHAR(255)");
 

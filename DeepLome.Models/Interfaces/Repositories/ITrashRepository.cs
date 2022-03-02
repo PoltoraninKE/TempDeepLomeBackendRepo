@@ -7,8 +7,7 @@ namespace DeepLome.Models.Interfaces.Repositories
         public void Add(Trash trash);
         public void Delete(Trash trash);
         public void Update(Trash trash);
-        public Trash GetById(int id);
-        public Trash GetByName(string name);
+        public Trash? GetById(int id);
         public IEnumerable<Trash> GetAll();
     }
 }
