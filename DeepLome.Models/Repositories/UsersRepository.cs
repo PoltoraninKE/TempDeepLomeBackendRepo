@@ -36,7 +36,7 @@ namespace DeepLome.Models.Repositories
             return _context.Users;
         }
 
-        public User? GetById(int id)
+        public User? GetById(long id)
         {
             return _context.Users.Select(u => u).SingleOrDefault(u => u.Id == id);
         }
