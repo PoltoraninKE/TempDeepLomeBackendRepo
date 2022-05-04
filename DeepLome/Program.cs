@@ -1,6 +1,7 @@
 using DeepLome.Models.DatabaseModels;
 using DeepLome.Models.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using DeepLome.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 // Выключать для работы с Ngrok
-//app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 #region This things should be in DI
 var context = new TrashFindersDBContext();
@@ -263,5 +264,18 @@ app.MapGet("/get_event/{id}", (int id) =>
 })
  .WithName("Get event by id");
 #endregion
+
+app.MapPost("/try_in_photo", ([FromBody] byte[] photoAsByteArray) => 
+{
+    try
+    {
+        ImageConverter.SaveImage(photoAsByteArray);
+    }
+    catch (Exception ex) 
+    {
+        throw new Exception(ex.Message);
+    }
+})
+ .WithName("Convert image");
 
 app.Run();
