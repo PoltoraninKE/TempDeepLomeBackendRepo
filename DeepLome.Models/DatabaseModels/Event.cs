@@ -1,11 +1,15 @@
-﻿using DeepLome.Models.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace DeepLome.Models.DatabaseModels
+namespace DeepLome.WebApi.Models
 {
-    public partial class Event : IEntity
+    public partial class Event
     {
+        public Event()
+        {
+            EventPhotos = new HashSet<EventPhoto>();
+        }
+
         public long Id { get; set; }
         public long? CreatorId { get; set; }
         public string? EventName { get; set; }
@@ -16,5 +20,6 @@ namespace DeepLome.Models.DatabaseModels
         public double? Longitude { get; set; }
 
         public virtual User? Creator { get; set; }
+        public virtual ICollection<EventPhoto> EventPhotos { get; set; }
     }
 }

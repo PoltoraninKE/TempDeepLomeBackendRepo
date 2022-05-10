@@ -21,6 +21,7 @@ var _userRepository = new UsersRepository(context);
 var _eventRepository = new EventRepository(context);
 var _trashRepository = new TrashRepository(context);
 var _sizeRepository = new SizeRepository(context);
+//var _userService = new UserService(_userRepository);
 #endregion
 
 #region HealthCheck
@@ -121,6 +122,15 @@ app.MapGet("/get_user/{name}", (string name) =>
     }
 })
   .WithName("Get user by FirstName");
+
+
+app.MapGet("/is_user_registered/{id:int}", (int id) =>
+{
+    return Results.Ok();
+    //_userService.IsUserRegistered(id);
+})
+  .WithName("Check is user registered in system");
+
 #endregion
 
 #region Trashes

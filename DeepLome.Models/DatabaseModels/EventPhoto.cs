@@ -3,12 +3,13 @@ using System.Collections.Generic;
 
 namespace DeepLome.WebApi.Models
 {
-    public partial class UsersAtEvent
+    public partial class EventPhoto
     {
+        public long Id { get; set; }
         public long? EventId { get; set; }
-        public long? UserId { get; set; }
+        public long? PhotoId { get; set; }
 
         public virtual Event? Event { get; set; }
-        public virtual User? User { get; set; }
+        public virtual Photo? Photo { get; set; }
     }
 }
