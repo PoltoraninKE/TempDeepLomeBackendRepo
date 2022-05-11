@@ -1,15 +1,14 @@
-﻿using DeepLome.Models.DatabaseModels;
-using DeepLome.Models.Interfaces;
-using DeepLome.Models.Interfaces.Repositories;
+﻿using DeepLome.Models.Interfaces.Repositories;
+using DeepLome.WebApi.Models;
 
 namespace DeepLome.Models.Repositories
 {
     public class UsersRepository : IUserRepository
     {
-        private TrashFindersDBContext _context;
+        private readonly TrashFindersContext _context;
 
 
-        public UsersRepository(TrashFindersDBContext context) 
+        public UsersRepository(TrashFindersContext context) 
         {
             _context = context;
         }

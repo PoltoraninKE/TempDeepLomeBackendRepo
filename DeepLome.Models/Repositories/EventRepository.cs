@@ -1,18 +1,13 @@
-﻿using DeepLome.Models.DatabaseModels;
-using DeepLome.Models.Interfaces.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DeepLome.Models.Interfaces.Repositories;
+using DeepLome.WebApi.Models;
 
 namespace DeepLome.Models.Repositories
 {
     public class EventRepository : IEventRepository
     {
-        TrashFindersDBContext _context;
+        TrashFindersContext _context;
 
-        public EventRepository(TrashFindersDBContext context) 
+        public EventRepository(TrashFindersContext context) 
         {
             _context = context;
         }

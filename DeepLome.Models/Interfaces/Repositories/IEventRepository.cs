@@ -1,8 +1,8 @@
-﻿using DeepLome.Models.DatabaseModels;
+﻿using DeepLome.WebApi.Models;
 
 namespace DeepLome.Models.Interfaces.Repositories
 {
-    internal interface IEventRepository
+    public interface IEventRepository
     {
         public void Add(Event event_);
         public void Delete(Event event_);

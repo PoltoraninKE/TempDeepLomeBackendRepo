@@ -1,20 +1,20 @@
-﻿using DeepLome.Models.DatabaseModels;
-using DeepLome.Models.Repositories;
+﻿using DeepLome.Models.Interfaces;
+using DeepLome.WebApi.Models;
 
 
 namespace DeepLome.Services.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        private UnitOfWork _unitOfWork;
-        public UserService(UnitOfWork unitOfWork) 
+        private IUnitOfWork _unitOfWork;
+        public UserService(IUnitOfWork unitOfWork) 
         {
             _unitOfWork = unitOfWork;
         }
 
         public bool IsUserRegistered(User user) 
         {
-            var users = _unitOfWork.Users().GetAll();
+            var users = _unitOfWork.Users.GetAll();
             if(users.Contains(user))
                 return true;
             return false;
@@ -26,8 +26,7 @@ namespace DeepLome.Services.Services
             return validateErrors;            
         }
 
-
-        private List<string> ValidateUserToRegister(User user) 
+        protected List<string> ValidateUserToRegister(User user) 
         {
             List<string> validateErrors = new List<string>();
             if (IsUserRegistered(user))

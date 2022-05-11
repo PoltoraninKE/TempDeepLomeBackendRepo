@@ -22,14 +22,14 @@ namespace DeepLome.WebApi.Models
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<UsersAtEvent> UsersAtEvents { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlite("DataSource=C:\\Users\\Kirul\\Desktop\\DeepLome\\DeepLome\\DeepLome\\TrashFinders.db;");
-            }
-        }
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//                optionsBuilder.UseSqlite("DataSource=C:\\Users\\Kirul\\Desktop\\DeepLome\\DeepLome\\DeepLome\\TrashFinders.db;");
+//            }
+//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -81,6 +81,8 @@ namespace DeepLome.WebApi.Models
                 entity.Property(e => e.Phone).HasColumnType("NVARCHAR(127)");
 
                 entity.Property(e => e.UserName).HasColumnType("NVARCHAR(1023)");
+
+                entity.Property(e => e.UserPhoto).HasColumnType("BLOB");
             });
 
             modelBuilder.Entity<UsersAtEvent>(entity =>

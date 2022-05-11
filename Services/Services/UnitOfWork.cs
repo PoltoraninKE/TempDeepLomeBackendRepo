@@ -1,44 +1,31 @@
-﻿using DeepLome.Models.DatabaseModels;
-using DeepLome.Models.Repositories;
+﻿using DeepLome.Models.Interfaces;
+using DeepLome.Models.Interfaces.Repositories;
+using DeepLome.WebApi.Models;
 
 namespace DeepLome.Services.Services
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork :  IUnitOfWork
     {
         private bool _disposed = false;
 
+        private TrashFindersContext _dbContext;
 
-        private TrashFindersDBContext dbContext;
+        public IUserRepository Users { get; }
+        public IEventRepository Event { get; }
 
-        private UsersRepository _usersRepository;
-        private TrashRepository _trashRepository;
-        private EventRepository _eventRepository;
-
-
-        public UsersRepository Users() 
+        public UnitOfWork(
+            TrashFindersContext dbContext,
+            IUserRepository usersRepository,
+            IEventRepository eventRepository)
         {
-            if (_usersRepository == null)
-                _usersRepository = new UsersRepository(dbContext);
-            return _usersRepository;
+            _dbContext = dbContext;
+            Users = usersRepository;
+            Event = eventRepository;
         }
-
-        public TrashRepository Trashs()
-        {
-            if (_trashRepository == null)
-                _trashRepository = new TrashRepository(dbContext);
-            return _trashRepository;
-        }
-
-        public EventRepository Events()
-        {
-            if (_eventRepository == null)
-                _eventRepository = new EventRepository(dbContext);
-            return _eventRepository;
-        }
-
+        
         public void SaveChanges() 
         {
-            dbContext.SaveChanges();
+            _dbContext.SaveChanges();
         }
 
         public virtual void Dispose(bool disposing)
@@ -47,7 +34,7 @@ namespace DeepLome.Services.Services
             {
                 if (disposing)
                 {
-                    dbContext.Dispose();
+                    _dbContext.Dispose();
                 }
                 _disposed = true;
             }

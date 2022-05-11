@@ -1,8 +1,8 @@
-﻿using DeepLome.Models.DatabaseModels;
+﻿using DeepLome.WebApi.Models;
 
 namespace DeepLome.Models.Interfaces.Repositories
 {
-    internal interface IUserRepository
+    public interface IUserRepository
     {
         public void Add(User user);
         public void Delete(User user);
