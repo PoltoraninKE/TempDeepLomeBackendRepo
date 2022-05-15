@@ -1,9 +1,10 @@
-﻿using System.Drawing.Imaging;
+﻿using System.Buffers.Text;
+using System.Drawing.Imaging;
 using System.Drawing;
 
 namespace DeepLome.Services.Services
 {
-    public static class ImageConverter
+    public static class ImageService
     {
         private static string _filePath = @"D:\Programmin\C#\DeepLome.NET6\TempDeepLomeBackendRepo\Services\UserImages";
 
@@ -15,5 +16,11 @@ namespace DeepLome.Services.Services
                 image.Save("output.jpg", ImageFormat.Jpeg);  // Or Png
             }
         }
+
+        public static byte[] FromBase64StringToBytes(string photoString)
+        {
+            return Convert.FromBase64String(photoString);
+        }
+
     }
 }

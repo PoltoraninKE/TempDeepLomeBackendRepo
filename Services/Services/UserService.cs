@@ -33,6 +33,5 @@ namespace DeepLome.Services.Services
                 validateErrors.Add("User is already registered");
             return validateErrors;
         }
-
     }
 }
