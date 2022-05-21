@@ -1,4 +1,3 @@
-using System.Text.Json;
 using DeepLome.Models.Interfaces;
 using DeepLome.Models.Interfaces.Repositories;
 using DeepLome.Models.Repositories;
@@ -16,6 +15,7 @@ builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IUserRepository, UsersRepository>();
 builder.Services.AddTransient<IEventRepository, EventRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IEventService, EventService>();
 
 builder.Services.AddDbContext<TrashFindersContext>(options =>
 {
