@@ -10,8 +10,8 @@ namespace DeepLome.WebApi.Controllers
     [Route("[controller]")]
     public class UserController : Controller
     {
-        public IUnitOfWork _unitOfWork;
-        public IUserService _userService;
+        private IUnitOfWork _unitOfWork;
+        private IUserService _userService;
 
         public UserController(IUnitOfWork unitOfWork, IUserService userService) 
         {
@@ -56,6 +56,7 @@ namespace DeepLome.WebApi.Controllers
             var errorsList = _userService.RegisterUser(prepUser);
             if(errorsList.Count > 0)
                 return BadRequest(errorsList);
+            _unitOfWork.Users.Add(prepUser);
             return Ok("User has been registered");
         }
     }

@@ -1,4 +1,6 @@
-﻿using DeepLome.Models.Interfaces;
+﻿using DeepLome.DTO.ApiModels;
+using DeepLome.Models.Interfaces;
+using DeepLome.Services.Services;
 using DeepLome.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,13 +10,22 @@ namespace DeepLome.WebApi.Controllers
     [Route("[controller]")]
     public class EventController : Controller
     {
-        public IUnitOfWork _unitOfWork;
-        public IEventService _eventService;
+        private IUnitOfWork _unitOfWork;
+        private IEventService _eventService;
 
         public EventController(IUnitOfWork unitOfWork, IEventService eventService)
         {
             _unitOfWork = unitOfWork;
             _eventService = eventService;
+        }
+
+        [HttpPost("/try_in_photo")]
+        public IActionResult TryInPhoto(string photoInBase64)
+        {
+            if (string.IsNullOrEmpty(photoInBase64))
+                return BadRequest("Photo is null");
+            ImageService.SaveImage(photoInBase64);
+            return Ok();
         }
 
         [HttpGet("/get_all")]
@@ -33,9 +44,19 @@ namespace DeepLome.WebApi.Controllers
         }
 
         [HttpPost("/new_event")]
-        public IActionResult RegisterNewEvent(Event new_event)
+        public IActionResult RegisterNewEvent(EventDto newEvent)
         {
-            _unitOfWork.Event.Add(new_event);
+            var userEvent = new Event
+            {
+                CreatorId = newEvent.CreatorId,
+                EventName = newEvent.EventName,
+                EventDescription = newEvent.EventDescription,
+                StartDateTime = newEvent.StartDateTime,
+                EndDateTime = newEvent.EndDateTime,
+                Latitude = newEvent.Latitude,
+                Longitude = newEvent.Longitude
+            };
+            _unitOfWork.Event.Add(userEvent);
             return Ok();
         }
     }

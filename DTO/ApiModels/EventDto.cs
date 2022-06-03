@@ -4,7 +4,7 @@ namespace DeepLome.DTO.ApiModels
 {
     public class EventDto
     {
-        public Event()
+        public EventDto()
         {
             EventPhotos = new HashSet<EventPhoto>();
         }
@@ -13,11 +13,8 @@ namespace DeepLome.DTO.ApiModels
         public long? CreatorId { get; set; }
         public string? EventName { get; set; }
         public string? EventDescription { get; set; }
-
-#warning ТУТ У МЕНЯ ПОЧЕМУ-ТО БАЙТЫ ВМЕСТО ДЕЙТТАЙМОВ
-
-        public byte[]? StartDateTime { get; set; }
-        public byte[]? EndDateTime { get; set; }
+        public DateTime? StartDateTime { get; set; }
+        public DateTime? EndDateTime { get; set; }
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
 
