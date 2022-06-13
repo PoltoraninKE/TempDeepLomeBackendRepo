@@ -1,6 +1,6 @@
-﻿using DeepLome.Models.Interfaces;
+﻿using DeepLome.Models.DatabaseModles;
+using DeepLome.Models.Interfaces;
 using DeepLome.Models.Interfaces.Repositories;
-using DeepLome.WebApi.Models;
 
 namespace DeepLome.Services.Services
 {
@@ -12,15 +12,18 @@ namespace DeepLome.Services.Services
 
         public IUserRepository Users { get; }
         public IEventRepository Event { get; }
+        public IEventPhotoRepository EventPhotoRepository { get; }
 
         public UnitOfWork(
             TrashFindersContext dbContext,
             IUserRepository usersRepository,
-            IEventRepository eventRepository)
+            IEventRepository eventRepository,
+            IEventPhotoRepository eventPhotoRepository)
         {
             _dbContext = dbContext;
             Users = usersRepository;
             Event = eventRepository;
+            EventPhotoRepository = eventPhotoRepository;
         }
         
         public void SaveChanges() 

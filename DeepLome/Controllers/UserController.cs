@@ -1,6 +1,7 @@
-﻿using DeepLome.Models.Interfaces;
+﻿using DeepLome.Models.DatabaseModles;
+using DeepLome.Models.Interfaces;
+using DeepLome.Services.Interfaces;
 using DeepLome.Services.Services;
-using DeepLome.WebApi.Models;
 using DTO.ApiModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,6 +41,8 @@ namespace DeepLome.WebApi.Controllers
         [HttpPost("/register")]
         public IActionResult RegisterUser([FromBody] UserDTO user) 
         {
+            var a1 = _unitOfWork.Users.GetAll();
+
             var prepUser = new User
             {
                 Id = user.Id,
@@ -52,6 +55,8 @@ namespace DeepLome.WebApi.Controllers
                     ImageService.FromBase64StringToBytes(user.UserPhoto),
                 Events = user.Events,
             };
+
+            var a2 = _unitOfWork.Users.GetAll();
             
             var errorsList = _userService.RegisterUser(prepUser);
             if(errorsList.Count > 0)

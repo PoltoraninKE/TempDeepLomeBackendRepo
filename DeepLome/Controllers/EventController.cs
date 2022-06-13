@@ -1,7 +1,8 @@
 ﻿using DeepLome.DTO.ApiModels;
+using DeepLome.Models.DatabaseModles;
 using DeepLome.Models.Interfaces;
+using DeepLome.Services.Interfaces;
 using DeepLome.Services.Services;
-using DeepLome.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeepLome.WebApi.Controllers
@@ -10,8 +11,8 @@ namespace DeepLome.WebApi.Controllers
     [Route("[controller]")]
     public class EventController : Controller
     {
-        private IUnitOfWork _unitOfWork;
-        private IEventService _eventService;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IEventService _eventService;
 
         public EventController(IUnitOfWork unitOfWork, IEventService eventService)
         {
@@ -20,9 +21,10 @@ namespace DeepLome.WebApi.Controllers
         }
 
         [HttpPost("/try_in_photo")]
-        public IActionResult TryInPhoto(string photoInBase64)
+        public IActionResult TryInPhoto([FromBody] byte[] photoInBase64)
         {
-            if (string.IsNullOrEmpty(photoInBase64))
+            // Тут должно идти на нейросетку
+            if (photoInBase64.Length == 0)
                 return BadRequest("Photo is null");
             ImageService.SaveImage(photoInBase64);
             return Ok();
@@ -46,16 +48,24 @@ namespace DeepLome.WebApi.Controllers
         [HttpPost("/new_event")]
         public IActionResult RegisterNewEvent(EventDto newEvent)
         {
+
+            var a = _eventService.ConvertToEvent(newEvent);
+
             var userEvent = new Event
             {
-                CreatorId = newEvent.CreatorId,
+                CreatorId = newEvent.UserId,
                 EventName = newEvent.EventName,
                 EventDescription = newEvent.EventDescription,
-                StartDateTime = newEvent.StartDateTime,
-                EndDateTime = newEvent.EndDateTime,
+                StartDateTime = newEvent.StartDateTime.HasValue 
+                    ? BitConverter.GetBytes(newEvent.StartDateTime.Value.Ticks) 
+                    : BitConverter.GetBytes(DateTime.Now.Ticks),
+                EndDateTime = newEvent.EndDateTime.HasValue 
+                    ? BitConverter.GetBytes(newEvent.EndDateTime.Value.Ticks) 
+                    : BitConverter.GetBytes(_eventService.CalculateEndDate()),
                 Latitude = newEvent.Latitude,
-                Longitude = newEvent.Longitude
+                Longitude = newEvent.Longitude,
             };
+
             _unitOfWork.Event.Add(userEvent);
             return Ok();
         }

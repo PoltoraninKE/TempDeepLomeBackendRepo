@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace DeepLome.WebApi.Models
+namespace DeepLome.WebApi.DatabaseModles
 {
     public partial class TrashFindersContext : DbContext
     {
@@ -27,7 +24,7 @@ namespace DeepLome.WebApi.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlite("DataSource=C:\\Users\\Kirul\\Desktop\\DeepLome\\DeepLome\\DeepLome\\TrashFinders.db;");
+                optionsBuilder.UseSqlite("DataSource=C:\\Users\\Kirul\\Desktop\\DeepLome\\DeepLome\\DeepLome\\TrashFinders.db");
             }
         }
 
@@ -35,13 +32,11 @@ namespace DeepLome.WebApi.Models
         {
             modelBuilder.Entity<Event>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
                 entity.Property(e => e.EndDateTime).HasColumnType("DATETIME");
 
-                entity.Property(e => e.EventDescription).HasColumnType("NVARCHAR(4095)");
+                entity.Property(e => e.EventDescription).HasColumnType("NVARCHAR (4095)");
 
-                entity.Property(e => e.EventName).HasColumnType("NVARCHAR(255)");
+                entity.Property(e => e.EventName).HasColumnType("NVARCHAR (255)");
 
                 entity.Property(e => e.StartDateTime).HasColumnType("DATETIME");
 
@@ -52,8 +47,6 @@ namespace DeepLome.WebApi.Models
 
             modelBuilder.Entity<EventPhoto>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
                 entity.HasOne(d => d.Event)
                     .WithMany(p => p.EventPhotos)
                     .HasForeignKey(d => d.EventId);
@@ -65,39 +58,31 @@ namespace DeepLome.WebApi.Models
 
             modelBuilder.Entity<Photo>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
                 entity.Property(e => e.Photo1).HasColumnName("Photo");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.HasKey(e => e.UserTelegramId);
 
-                entity.Property(e => e.FirstName).HasColumnType("NVARCHAR(255)");
+                entity.Property(e => e.UserTelegramId).ValueGeneratedNever();
 
-                entity.Property(e => e.LastName).HasColumnType("NVARCHAR(255)");
+                entity.Property(e => e.FirstName).HasColumnType("NVARCHAR (255)");
 
-                entity.Property(e => e.Phone).HasColumnType("NVARCHAR(127)");
+                entity.Property(e => e.LastName).HasColumnType("NVARCHAR (255)");
 
-                entity.Property(e => e.UserName).HasColumnType("NVARCHAR(1023)");
+                entity.Property(e => e.Phone).HasColumnType("NVARCHAR (127)");
 
-                entity.Property(e => e.UserPhoto).HasColumnType("BLOB");
+                entity.Property(e => e.UserName).HasColumnType("NVARCHAR (1023)");
             });
 
             modelBuilder.Entity<UsersAtEvent>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("UsersAtEvent");
 
                 entity.HasOne(d => d.Event)
-                    .WithMany()
+                    .WithMany(p => p.UsersAtEvents)
                     .HasForeignKey(d => d.EventId);
-
-                entity.HasOne(d => d.User)
-                    .WithMany()
-                    .HasForeignKey(d => d.UserId);
             });
 
             OnModelCreatingPartial(modelBuilder);

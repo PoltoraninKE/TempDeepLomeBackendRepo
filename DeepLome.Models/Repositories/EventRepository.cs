@@ -1,5 +1,5 @@
-﻿using DeepLome.Models.Interfaces.Repositories;
-using DeepLome.WebApi.Models;
+﻿using DeepLome.Models.DatabaseModles;
+using DeepLome.Models.Interfaces.Repositories;
 
 namespace DeepLome.Models.Repositories
 {
@@ -12,10 +12,11 @@ namespace DeepLome.Models.Repositories
             _context = context;
         }
 
-        public void Add(Event event_)
+        public Event Add(Event event_)
         {
-            _context.Events.Add(event_);
+            var createdEvent = _context.Events.Add(event_);
             _context.SaveChanges();
+            return createdEvent.Entity;
         }
 
         public void Delete(Event event_)

@@ -1,5 +1,5 @@
-﻿using DeepLome.Models.Interfaces.Repositories;
-using DeepLome.WebApi.Models;
+﻿using DeepLome.Models.DatabaseModles;
+using DeepLome.Models.Interfaces.Repositories;
 
 namespace DeepLome.Models.Repositories
 {

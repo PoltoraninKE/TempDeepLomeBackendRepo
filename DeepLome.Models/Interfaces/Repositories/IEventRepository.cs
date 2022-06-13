@@ -1,10 +1,10 @@
-﻿using DeepLome.WebApi.Models;
+﻿using DeepLome.Models.DatabaseModles;
 
 namespace DeepLome.Models.Interfaces.Repositories
 {
     public interface IEventRepository
     {
-        public void Add(Event event_);
+        public Event Add(Event event_);
         public void Delete(Event event_);
         public void Update(Event event_);
         public Event? GetById(int id);

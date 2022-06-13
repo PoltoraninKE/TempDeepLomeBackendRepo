@@ -1,4 +1,4 @@
-﻿using DeepLome.WebApi.Models;
+﻿using DeepLome.Models.DatabaseModles;
 
 namespace DeepLome.Models.Interfaces.Repositories
 {

@@ -1,8 +1,9 @@
+using DeepLome.Models.DatabaseModles;
 using DeepLome.Models.Interfaces;
 using DeepLome.Models.Interfaces.Repositories;
 using DeepLome.Models.Repositories;
+using DeepLome.Services.Interfaces;
 using DeepLome.Services.Services;
-using DeepLome.WebApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,7 @@ builder.Services.AddTransient<IUserRepository, UsersRepository>();
 builder.Services.AddTransient<IEventRepository, EventRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IEventService, EventService>();
+builder.Services.AddTransient<IEventPhotoRepository, EventPhotoRepository>();
 
 builder.Services.AddDbContext<TrashFindersContext>(options =>
 {

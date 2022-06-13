@@ -1,6 +1,6 @@
-﻿using DeepLome.Models.Interfaces;
-using DeepLome.WebApi.Models;
-
+﻿using DeepLome.Models.DatabaseModles;
+using DeepLome.Models.Interfaces;
+using DeepLome.Services.Interfaces;
 
 namespace DeepLome.Services.Services
 {
