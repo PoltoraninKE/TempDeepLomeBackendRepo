@@ -1,5 +1,5 @@
 ﻿using DeepLome.DTO.ApiModels;
-using DeepLome.Models.DatabaseModles;
+using DeepLome.Models.DatabaseModels;
 
 namespace DeepLome.Services.Interfaces
 {

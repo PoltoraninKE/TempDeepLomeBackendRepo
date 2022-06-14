@@ -1,5 +1,5 @@
 ﻿using DeepLome.DTO.ApiModels;
-using DeepLome.Models.DatabaseModles;
+using DeepLome.Models.DatabaseModels;
 using DeepLome.Services.Interfaces;
 
 namespace DeepLome.Services.Services
@@ -10,7 +10,7 @@ namespace DeepLome.Services.Services
         {
             return new Event
             {
-                CreatorId = eventDto.UserId,
+                UserTelegramId = eventDto.UserTelegramId,
                 EventName = eventDto.EventName,
                 EventDescription = eventDto.EventDescription,
                 StartDateTime = eventDto.StartDateTime.HasValue ? BitConverter.GetBytes(eventDto.StartDateTime.Value.Ticks) : BitConverter.GetBytes(DateTime.Now.Ticks),

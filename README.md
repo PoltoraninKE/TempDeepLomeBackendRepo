@@ -2,7 +2,7 @@
 Временный репозиторий (невременный) для работы с бекендом на .net 6 и OpenApi
 
 # Scaffold db
-scaffold-dbcontext "DataSource=D:\Programms\SQLiteStudio\TrashFindersDB.db" Microsoft.EntityFrameworkCore.Sqlite -OutputDir DatabaseModles
+scaffold-dbcontext "DataSource=C:\Users\Kirul\Desktop\DeepLome\DeepLome\DeepLome\TrashFinders.db" Microsoft.EntityFrameworkCore.Sqlite -OutputDir DatabaseModels
 
 # Ngrok
 ngrok http http://localhost:5094  -host-header=localhost:5094 -region eu

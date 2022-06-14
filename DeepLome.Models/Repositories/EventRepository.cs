@@ -1,4 +1,4 @@
-﻿using DeepLome.Models.DatabaseModles;
+﻿using DeepLome.Models.DatabaseModels;
 using DeepLome.Models.Interfaces.Repositories;
 
 namespace DeepLome.Models.Repositories
@@ -14,6 +14,7 @@ namespace DeepLome.Models.Repositories
 
         public Event Add(Event event_)
         {
+#warning Криво сохраняется дата
             var createdEvent = _context.Events.Add(event_);
             _context.SaveChanges();
             return createdEvent.Entity;

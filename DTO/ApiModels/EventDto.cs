@@ -1,4 +1,4 @@
-﻿using DeepLome.Models.DatabaseModles;
+﻿using DeepLome.Models.DatabaseModels;
 
 namespace DeepLome.DTO.ApiModels
 {
@@ -9,8 +9,7 @@ namespace DeepLome.DTO.ApiModels
             EventPhotos = new HashSet<EventPhoto>();
         }
         
-        public long Id { get; set; }
-        public long? UserId { get; set; }
+        public long? UserTelegramId { get; set; }
         public string? EventName { get; set; }
         public string? EventDescription { get; set; }
         public DateTime? StartDateTime { get; set; }

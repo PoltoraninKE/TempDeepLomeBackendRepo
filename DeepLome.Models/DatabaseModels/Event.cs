@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DeepLome.WebApi.DatabaseModles
+﻿namespace DeepLome.Models.DatabaseModels
 {
     public partial class Event
     {
@@ -12,7 +9,7 @@ namespace DeepLome.WebApi.DatabaseModles
         }
 
         public long Id { get; set; }
-        public long? CreatorId { get; set; }
+        public long? UserTelegramId { get; set; }
         public string? EventName { get; set; }
         public string? EventDescription { get; set; }
         public byte[]? StartDateTime { get; set; }
@@ -20,7 +17,7 @@ namespace DeepLome.WebApi.DatabaseModles
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
 
-        public virtual User? Creator { get; set; }
+        public virtual User? UserTelegram { get; set; }
         public virtual ICollection<EventPhoto> EventPhotos { get; set; }
         public virtual ICollection<UsersAtEvent> UsersAtEvents { get; set; }
     }

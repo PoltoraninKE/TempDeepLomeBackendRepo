@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DeepLome.WebApi.DatabaseModles
+﻿namespace DeepLome.Models.DatabaseModels
 {
     public partial class EventPhoto
     {

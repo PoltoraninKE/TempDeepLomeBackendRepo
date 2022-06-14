@@ -1,6 +1,6 @@
-﻿using DeepLome.Models.DatabaseModles;
+﻿using DeepLome.Models.DatabaseModels;
 
-namespace DTO.ApiModels
+namespace DeepLome.DTO.ApiModels
 {
     public class UserDTO
     {
@@ -9,7 +9,7 @@ namespace DTO.ApiModels
             Events = new HashSet<Event>();
         }
 
-        public long Id { get; set; }
+        public long UserTelegramId { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? UserName { get; set; }

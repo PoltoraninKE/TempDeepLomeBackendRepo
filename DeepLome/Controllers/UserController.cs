@@ -1,8 +1,8 @@
-﻿using DeepLome.Models.DatabaseModles;
+﻿using DeepLome.DTO.ApiModels;
+using DeepLome.Models.DatabaseModels;
 using DeepLome.Models.Interfaces;
 using DeepLome.Services.Interfaces;
 using DeepLome.Services.Services;
-using DTO.ApiModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeepLome.WebApi.Controllers
@@ -45,15 +45,14 @@ namespace DeepLome.WebApi.Controllers
 
             var prepUser = new User
             {
-                Id = user.Id,
+                UserTelegramId = user.UserTelegramId,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Phone = user.Phone,
                 UserName = user.UserName,
                 UserPhoto =  string.IsNullOrEmpty(user.UserPhoto) ?
                     null :
-                    ImageService.FromBase64StringToBytes(user.UserPhoto),
-                Events = user.Events,
+                    ImageService.FromBase64StringToBytes(user.UserPhoto)
             };
 
             var a2 = _unitOfWork.Users.GetAll();

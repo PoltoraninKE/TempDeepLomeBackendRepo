@@ -1,5 +1,4 @@
-﻿using System.Buffers.Text;
-using System.Drawing.Imaging;
+﻿using System.Drawing.Imaging;
 using System.Drawing;
 
 namespace DeepLome.Services.Services

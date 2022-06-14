@@ -1,4 +1,4 @@
-﻿namespace DeepLome.Models.DatabaseModles
+﻿namespace DeepLome.Models.DatabaseModels
 {
     public partial class Photo
     {

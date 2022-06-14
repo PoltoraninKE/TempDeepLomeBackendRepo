@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DeepLome.WebApi.DatabaseModles
+﻿namespace DeepLome.Models.DatabaseModels
 {
     public partial class UsersAtEvent
     {
@@ -10,5 +7,6 @@ namespace DeepLome.WebApi.DatabaseModles
         public long? UserId { get; set; }
 
         public virtual Event? Event { get; set; }
+        public virtual User? User { get; set; }
     }
 }

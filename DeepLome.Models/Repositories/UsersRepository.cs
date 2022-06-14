@@ -1,4 +1,4 @@
-﻿using DeepLome.Models.DatabaseModles;
+﻿using DeepLome.Models.DatabaseModels;
 using DeepLome.Models.Interfaces.Repositories;
 
 namespace DeepLome.Models.Repositories
@@ -37,7 +37,7 @@ namespace DeepLome.Models.Repositories
 
         public User? GetById(long id)
         {
-            return _context.Users.Select(u => u).SingleOrDefault(u => u.Id == id);
+            return _context.Users.Select(u => u).SingleOrDefault(u => u.UserTelegramId == id);
         }
 
         public User? GetByName(string name)

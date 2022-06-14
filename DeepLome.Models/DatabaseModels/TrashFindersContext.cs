@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace DeepLome.WebApi.DatabaseModles
+namespace DeepLome.Models.DatabaseModels
 {
     public partial class TrashFindersContext : DbContext
     {
@@ -40,9 +40,9 @@ namespace DeepLome.WebApi.DatabaseModles
 
                 entity.Property(e => e.StartDateTime).HasColumnType("DATETIME");
 
-                entity.HasOne(d => d.Creator)
+                entity.HasOne(d => d.UserTelegram)
                     .WithMany(p => p.Events)
-                    .HasForeignKey(d => d.CreatorId);
+                    .HasForeignKey(d => d.UserTelegramId);
             });
 
             modelBuilder.Entity<EventPhoto>(entity =>
@@ -65,6 +65,9 @@ namespace DeepLome.WebApi.DatabaseModles
             {
                 entity.HasKey(e => e.UserTelegramId);
 
+                entity.HasIndex(e => e.UserTelegramId, "IX_Users_UserTelegramId")
+                    .IsUnique();
+
                 entity.Property(e => e.UserTelegramId).ValueGeneratedNever();
 
                 entity.Property(e => e.FirstName).HasColumnType("NVARCHAR (255)");
@@ -83,6 +86,10 @@ namespace DeepLome.WebApi.DatabaseModles
                 entity.HasOne(d => d.Event)
                     .WithMany(p => p.UsersAtEvents)
                     .HasForeignKey(d => d.EventId);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UsersAtEvents)
+                    .HasForeignKey(d => d.UserId);
             });
 
             OnModelCreatingPartial(modelBuilder);

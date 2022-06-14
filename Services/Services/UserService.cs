@@ -1,4 +1,4 @@
-﻿using DeepLome.Models.DatabaseModles;
+﻿using DeepLome.Models.DatabaseModels;
 using DeepLome.Models.Interfaces;
 using DeepLome.Services.Interfaces;
 

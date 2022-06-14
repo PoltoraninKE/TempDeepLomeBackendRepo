@@ -1,5 +1,5 @@
 ﻿using DeepLome.DTO.ApiModels;
-using DeepLome.Models.DatabaseModles;
+using DeepLome.Models.DatabaseModels;
 using DeepLome.Models.Interfaces;
 using DeepLome.Services.Interfaces;
 using DeepLome.Services.Services;
@@ -53,7 +53,7 @@ namespace DeepLome.WebApi.Controllers
 
             var userEvent = new Event
             {
-                CreatorId = newEvent.UserId,
+                UserTelegramId = newEvent.UserTelegramId,
                 EventName = newEvent.EventName,
                 EventDescription = newEvent.EventDescription,
                 StartDateTime = newEvent.StartDateTime.HasValue 

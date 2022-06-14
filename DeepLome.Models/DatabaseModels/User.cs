@@ -1,4 +1,4 @@
-﻿namespace DeepLome.Models.DatabaseModles
+﻿namespace DeepLome.Models.DatabaseModels
 {
     public partial class User
     {
@@ -7,7 +7,7 @@
             Events = new HashSet<Event>();
             UsersAtEvents = new HashSet<UsersAtEvent>();
         }
-        public long Id { get; set; }
+
         public long UserTelegramId { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
