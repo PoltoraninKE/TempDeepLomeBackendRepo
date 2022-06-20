@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DeepLome.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserController : Controller
     {
         private IUnitOfWork _unitOfWork;
@@ -20,25 +20,16 @@ namespace DeepLome.WebApi.Controllers
             _userService = userService;
         }
 
-        [HttpGet("/get_by_id/{userId}")]
-        public IActionResult GetUserById(int userId) 
+        [HttpGet("user")]
+        public IActionResult GetUserById(int id) 
         {
-            var user = _unitOfWork.Users.GetById(userId);
+            var user = _unitOfWork.Users.GetById(id);
             if (user == null)
                 return BadRequest("User not found");
             return Ok(user);
         }
 
-        [HttpGet("/get_by_name/{name}")]
-        public IActionResult GetUserByName(string name)
-        {
-            var user = _unitOfWork.Users.GetByName(name);
-            if (user == null)
-                return BadRequest("User not found");
-            return Ok(user);
-        }
-
-        [HttpPost("/register")]
+        [HttpPost("register")]
         public IActionResult RegisterUser([FromBody] UserDTO user) 
         {
             var a1 = _unitOfWork.Users.GetAll();
